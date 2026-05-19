@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Mental - Cinética Química</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0e1a;
+    --center: #e8f4fd;
+    --branch1: #4fc3f7;
+    --branch2: #81c784;
+    --branch3: #ffb74d;
+    --branch4: #f06292;
+    --branch5: #ce93d8;
+    --text-dark: #0a0e1a;
+    --text-light: #e8f4fd;
+    --glow: rgba(79,195,247,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(79,195,247,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 30% at 20% 80%, rgba(206,147,216,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 25% 35% at 80% 20%, rgba(129,199,132,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    text-align: center;
+    color: var(--center);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    padding: 1.5rem 1rem 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  h1 span {
+    color: var(--branch1);
+  }
+
+  .subtitle {
+    text-align: center;
+    color: rgba(232,244,253,0.4);
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  svg#mindmap {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+  }
+
+  /* Node styles */
+  .node-center circle { filter: drop-shadow(0 0 18px rgba(79,195,247,0.7)); }
+  .node rect, .node ellipse { transition: filter 0.2s; cursor: default; }
+  .node:hover rect, .node:hover ellipse { filter: brightness(1.25) drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
+
+  .link { stroke-width: 2; fill: none; opacity: 0.55; }
+
+  /* Cards below map */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 2rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    flex: 1 1 260px;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+  }
+
+  .card ul { padding-left: 1rem; }
+  .card li {
+    font-size: 0.8rem;
+    color: rgba(232,244,253,0.75);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+  .card li strong { color: rgba(232,244,253,0.95); }
+
+  .c1 { border-color: rgba(79,195,247,0.3); }
+  .c1 .card-title { color: var(--branch1); }
+  .c2 { border-color: rgba(129,199,132,0.3); }
+  .c2 .card-title { color: var(--branch2); }
+  .c3 { border-color: rgba(255,183,77,0.3); }
+  .c3 .card-title { color: var(--branch3); }
+  .c4 { border-color: rgba(240,98,146,0.3); }
+  .c4 .card-title { color: var(--branch4); }
+  .c5 { border-color: rgba(206,147,216,0.3); }
+  .c5 .card-title { color: var(--branch5); }
+</style>
+</head>
+<body>
+
+<h1>Mapa Mental — <span>Cinética Química</span></h1>
+<p class="subtitle">Velocidad de reacción · Colisiones · Sistemas · Catalizadores</p>
+
+<svg id="mindmap" viewBox="0 0 1100 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── LINKS ── -->
+  <!-- Center → Teoría de Colisiones (left-up) -->
+  <path class="link" stroke="#4fc3f7" d="M 480,280 C 420,260 340,210 280,190"/>
+  <!-- Center → Velocidad de Reacción (left-down) -->
+  <path class="link" stroke="#81c784" d="M 480,295 C 420,310 340,350 280,370"/>
+  <!-- Center → Sistemas (right-up) -->
+  <path class="link" stroke="#ffb74d" d="M 620,280 C 680,260 760,210 820,190"/>
+  <!-- Center → Factores (right-down) -->
+  <path class="link" stroke="#f06292" d="M 620,295 C 680,310 760,350 820,360"/>
+  <!-- Center → Catalizadores (bottom) -->
+  <path class="link" stroke="#ce93d8" d="M 550,330 C 550,380 550,420 550,450"/>
+
+  <!-- Colisiones → children -->
+  <path class="link" stroke="#4fc3f7" d="M 240,175 C 200,160 165,140 130,130"/>
+  <path class="link" stroke="#4fc3f7" d="M 240,205 C 200,215 165,230 130,240"/>
+
+  <!-- Velocidad → children -->
+  <path class="link" stroke="#81c784" d="M 240,365 C 200,350 165,335 130,325"/>
+  <path class="link" stroke="#81c784" d="M 240,380 C 200,395 165,410 130,420"/>
+
+  <!-- Sistemas → children -->
+  <path class="link" stroke="#ffb74d" d="M 860,175 C 900,160 935,140 970,130"/>
+  <path class="link" stroke="#ffb74d" d="M 860,195 C 900,200 935,210 970,215"/>
+  <path class="link" stroke="#ffb74d" d="M 860,210 C 900,225 935,245 970,255"/>
+
+  <!-- Factores → children -->
+  <path class="link" stroke="#f06292" d="M 860,350 C 900,340 935,325 970,315"/>
+  <path class="link" stroke="#f06292" d="M 860,365 C 900,370 935,370 970,370"/>
+  <path class="link" stroke="#f06292" d="M 860,375 C 900,390 935,400 970,410"/>
+
+  <!-- Catalizadores → children -->
+  <path class="link" stroke="#ce93d8" d="M 510,465 C 470,480 440,490 410,495"/>
+  <path class="link" stroke="#ce93d8" d="M 590,465 C 630,480 660,490 690,495"/>
+
+  <!-- ══════════════════════════════════ NODES ══════════════════════════════════ -->
+
+  <!-- CENTER -->
+  <g class="node node-center">
+    <ellipse cx="550" cy="285" rx="78" ry="42" fill="#e8f4fd" filter="url(#glow)"/>
+    <text x="550" y="280" text-anchor="middle" fill="#0a0e1a" font-family="Syne,sans-serif" font-weight="800" font-size="13">CINÉTICA</text>
+    <text x="550" y="296" text-anchor="middle" fill="#0a0e1a" font-family="Syne,sans-serif" font-weight="800" font-size="13">QUÍMICA</text>
+  </g>
+
+  <!-- BRANCH 1: Teoría de Colisiones -->
+  <g class="node">
+    <rect x="140" y="158" width="200" height="36" rx="18" fill="#4fc3f7"/>
+    <text x="240" y="181" text-anchor="middle" fill="#0a0e1a" font-family="Syne,sans-serif" font-weight="700" font-size="11">Teoría de Colisiones</text>
+  </g>
+  <!-- sub -->
+  <g class="node">
+    <rect x="10" y="118" width="120" height="28" rx="14" fill="rgba(79,195,247,0.25)" stroke="#4fc3f7" stroke-width="1"/>
+    <text x="70" y="136" text-anchor="middle" fill="#b3e5fc" font-family="DM Sans,sans-serif" font-size="9.5">Frecuencia de</text>
+    <text x="70" y="147" text-anchor="middle" fill="#b3e5fc" font-family="DM Sans,sans-serif" font-size="9.5">colisiones</text>
+  </g>
+  <g class="node">
+    <rect x="10" y="226" width="120" height="28" rx="14" fill="rgba(79,195,247,0.25)" stroke="#4fc3f7" stroke-width="1"/>
+    <text x="70" y="244" text-anchor="middle" fill="#b3e5fc" font-family="DM Sans,sans-serif" font-size="9.5">Energía de</text>
+    <text x="70" y="255" text-anchor="middle" fill="#b3e5fc" font-family="DM Sans,sans-serif" font-size="9.5">activación</text>
+  </g>
+
+  <!-- BRANCH 2: Velocidad de Reacción -->
+  <g class="node">
+    <rect x="140" y="352" width="200" height="36" rx="18" fill="#81c784"/>
+    <text x="240" y="375" text-anchor="middle" fill="#0a0e1a" font-family="Syne,sans-serif" font-weight="700" font-size="11">Velocidad de Reacción</text>
+  </g>
+  <g class="node">
+    <rect x="10" y="312" width="120" height="28" rx="14" fill="rgba(129,199,132,0.25)" stroke="#81c784" stroke-width="1"/>
+    <text x="70" y="330" text-anchor="middle" fill="#c8e6c9" font-family="DM Sans,sans-serif" font-size="9.5">Puede aumentar</text>
+    <text x="70" y="341" text-anchor="middle" fill="#c8e6c9" font-family="DM Sans,sans-serif" font-size="9.5">o disminuir</text>
+  </g>
+  <g class="node">
+    <rect x="10" y="407" width="120" height="28" rx="14" fill="rgba(129,199,132,0.25)" stroke="#81c784" stroke-width="1"/>
+    <text x="70" y="425" text-anchor="middle" fill="#c8e6c9" font-family="DM Sans,sans-serif" font-size="9.5">Depende de</text>
+    <text x="70" y="436" text-anchor="middle" fill="#c8e6c9" font-family="DM Sans,sans-serif" font-size="9.5">los factores</text>
+  </g>
+
+  <!-- BRANCH 3: Sistemas -->
+  <g class="node">
+    <rect x="760" y="158" width="200" height="36" rx="18" fill="#ffb74d"/>
+    <text x="860" y="181" text-anchor="middle" fill="#0a0e1a" font-family="Syne,sans-serif" font-weight="700" font-size="11">Sistemas Termodinámicos</text>
+  </g>
+  <g class="node">
+    <rect x="970" y="116" width="120" height="28" rx="14" fill="rgba(255,183,77,0.25)" stroke="#ffb74d" stroke-width="1"/>
+    <text x="1030" y="134" text-anchor="middle" fill="#ffe0b2" font-family="DM Sans,sans-serif" font-size="9.5">Abierto</text>
+    <text x="1030" y="145" text-anchor="middle" fill="#ffe0b2" font-family="DM Sans,sans-serif" font-size="8.5">materia + energía</text>
+  </g>
+  <g class="node">
+    <rect x="970" y="202" width="120" height="28" rx="14" fill="rgba(255,183,77,0.25)" stroke="#ffb74d" stroke-width="1"/>
+    <text x="1030" y="220" text-anchor="middle" fill="#ffe0b2" font-family="DM Sans,sans-serif" font-size="9.5">Cerrado</text>
+    <text x="1030" y="231" text-anchor="middle" fill="#ffe0b2" font-family="DM Sans,sans-serif" font-size="8.5">solo energía</text>
+  </g>
+  <g class="node">
+    <rect x="970" y="242" width="120" height="28" rx="14" fill="rgba(255,183,77,0.25)" stroke="#ffb74d" stroke-width="1"/>
+    <text x="1030" y="260" text-anchor="middle" fill="#ffe0b2" font-family="DM Sans,sans-serif" font-size="9.5">Aislado</text>
+    <text x="1030" y="271" text-anchor="middle" fill="#ffe0b2" font-family="DM Sans,sans-serif" font-size="8.5">nada</text>
+  </g>
+
+  <!-- BRANCH 4: Factores -->
+  <g class="node">
+    <rect x="760" y="342" width="200" height="36" rx="18" fill="#f06292"/>
+    <text x="860" y="365" text-anchor="middle" fill="#0a0e1a" font-family="Syne,sans-serif" font-weight="700" font-size="11">Factores que Afectan</text>
+  </g>
+  <g class="node">
+    <rect x="970" y="302" width="120" height="28" rx="14" fill="rgba(240,98,146,0.25)" stroke="#f06292" stroke-width="1"/>
+    <text x="1030" y="320" text-anchor="middle" fill="#f8bbd0" font-family="DM Sans,sans-serif" font-size="9.5">Temperatura</text>
+    <text x="1030" y="331" text-anchor="middle" fill="#f8bbd0" font-family="DM Sans,sans-serif" font-size="8.5">↑T → ↑velocidad</text>
+  </g>
+  <g class="node">
+    <rect x="970" y="357" width="120" height="28" rx="14" fill="rgba(240,98,146,0.25)" stroke="#f06292" stroke-width="1"/>
+    <text x="1030" y="375" text-anchor="middle" fill="#f8bbd0" font-family="DM Sans,sans-serif" font-size="9.5">Concentración</text>
+    <text x="1030" y="386" text-anchor="middle" fill="#f8bbd0" font-family="DM Sans,sans-serif" font-size="8.5">↑conc → ↑colisiones</text>
+  </g>
+  <g class="node">
+    <rect x="970" y="397" width="120" height="36" rx="14" fill="rgba(240,98,146,0.25)" stroke="#f06292" stroke-width="1"/>
+    <text x="1030" y="413" text-anchor="middle" fill="#f8bbd0" font-family="DM Sans,sans-serif" font-size="9.5">Naturaleza de</text>
+    <text x="1030" y="425" text-anchor="middle" fill="#f8bbd0" font-family="DM Sans,sans-serif" font-size="9.5">reactivos &amp; superficie</text>
+  </g>
+
+  <!-- BRANCH 5: Catalizadores -->
+  <g class="node">
+    <rect x="470" y="450" width="160" height="36" rx="18" fill="#ce93d8"/>
+    <text x="550" y="473" text-anchor="middle" fill="#0a0e1a" font-family="Syne,sans-serif" font-weight="700" font-size="11">Catalizadores</text>
+  </g>
+  <g class="node">
+    <rect x="290" y="483" width="120" height="28" rx="14" fill="rgba(206,147,216,0.25)" stroke="#ce93d8" stroke-width="1"/>
+    <text x="350" y="500" text-anchor="middle" fill="#e1bee7" font-family="DM Sans,sans-serif" font-size="9.5">↓ Energía de</text>
+    <text x="350" y="511" text-anchor="middle" fill="#e1bee7" font-family="DM Sans,sans-serif" font-size="9.5">activación</text>
+  </g>
+  <g class="node">
+    <rect x="690" y="483" width="120" height="28" rx="14" fill="rgba(206,147,216,0.25)" stroke="#ce93d8" stroke-width="1"/>
+    <text x="750" y="500" text-anchor="middle" fill="#e1bee7" font-family="DM Sans,sans-serif" font-size="9.5">No se consumen</text>
+    <text x="750" y="511" text-anchor="middle" fill="#e1bee7" font-family="DM Sans,sans-serif" font-size="9.5">en la reacción</text>
+  </g>
+
+</svg>
+
+<!-- Detail cards -->
+<div class="cards">
+  <div class="card c1">
+    <div class="card-title">⚛ Teoría de Colisiones</div>
+    <ul>
+      <li>Las reacciones ocurren cuando partículas <strong>chocan</strong> con suficiente energía y orientación correcta.</li>
+      <li>Propuesta por <strong>Max Trautz y William Lewis</strong> en 1918.</li>
+      <li>Requiere superar la <strong>energía de activación</strong>.</li>
+      <li>Mayor frecuencia de colisiones = mayor velocidad.</li>
+    </ul>
+  </div>
+  <div class="card c2">
+    <div class="card-title">⚡ Velocidad de Reacción</div>
+    <ul>
+      <li>Mide qué tan <strong>rápido</strong> se consumen reactivos o se forman productos.</li>
+      <li>Puede <strong>aumentar o disminuir</strong> según las condiciones.</li>
+      <li>Relacionada directamente con la frecuencia de colisiones efectivas.</li>
+    </ul>
+  </div>
+  <div class="card c3">
+    <div class="card-title">🔵 Sistemas Termodinámicos</div>
+    <ul>
+      <li><strong>Abierto:</strong> intercambia materia y energía (taza sin tapa).</li>
+      <li><strong>Cerrado:</strong> solo intercambia energía (taza con tapa).</li>
+      <li><strong>Aislado:</strong> no intercambia nada (termo).</li>
+    </ul>
+  </div>
+  <div class="card c4">
+    <div class="card-title">🌡 Factores que Afectan</div>
+    <ul>
+      <li><strong>Temperatura:</strong> ↑T → ↑energía cinética → ↑velocidad.</li>
+      <li><strong>Concentración:</strong> ↑reactivos → ↑colisiones → ↑velocidad.</li>
+      <li><strong>Naturaleza de reactivos:</strong> iones reaccionan más rápido que moléculas neutras.</li>
+      <li><strong>Superficie de contacto:</strong> más área → más colisiones.</li>
+    </ul>
+  </div>
+  <div class="card c5">
+    <div class="card-title">🧪 Catalizadores</div>
+    <ul>
+      <li>Modifican la velocidad de reacción <strong>sin consumirse</strong>.</li>
+      <li>Disminuyen la <strong>energía de activación</strong> proporcionando una ruta alternativa.</li>
+      <li>Pueden ser <strong>activadores</strong> (aceleran) o <strong>inhibidores</strong> (retardan).</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
